@@ -51,8 +51,6 @@ dns:
   nameserver:
     - https://120.53.53.53/dns-query
     - https://223.5.5.5/dns-query
-    - https://dns.google/dns-query
-    - https://cloudflare-dns.com/dns-query
   proxy-server-nameserver:
     - https://120.53.53.53/dns-query
     - https://223.5.5.5/dns-query
@@ -65,6 +63,29 @@ dns:
       - https://dns.google/dns-query
 
 proxies:
+  - name: 233boy-hysteria2-216.133.149.235
+    type: hysteria2
+    server: 216.133.149.235
+    port: 20157
+    password: db37c0f2-33d8-4ed5-b48b-80db0e3ce8e2
+    auth: db37c0f2-33d8-4ed5-b48b-80db0e3ce8e2
+    skip-cert-verify: true
+
+  - name: 233boy-reality-216.133.149.235
+    type: vless
+    server: 216.133.149.235
+    port: 30227
+    uuid: 9a54bad8-538d-4744-b7bc-640629840490
+    tls: true
+    client-fingerprint: chrome
+    servername: aws.amazon.com
+    network: tcp
+    reality-opts:
+      public-key: y0QO-mD8hrDE3rV7C8BX-gQiCANoasGKQlq2ReIVXkI
+    tfo: false
+    skip-cert-verify: false
+    flow: xtls-rprx-vision
+
   - name: 米粒-US
     type: vless
     server: 154.56.121.98
@@ -91,50 +112,54 @@ proxies:
     skip-cert-verify: true
 
 proxy-groups:
-  - name: 🚀 节点选择
-    type: select
+  - type: select
+    name: 🚀 节点选择
     proxies:
       - DIRECT
       - REJECT
       - ⚡ 自动选择
+      - 233boy-hysteria2-216.133.149.235
+      - 233boy-reality-216.133.149.235
       - 米粒-US
       - 米粒-US-HY2
 
   - name: ⚡ 自动选择
     type: url-test
     proxies:
+      - 233boy-hysteria2-216.133.149.235
+      - 233boy-reality-216.133.149.235
       - 米粒-US
       - 米粒-US-HY2
     url: https://www.gstatic.com/generate_204
     interval: 300
     lazy: false
 
-  - name: 🏠 私有网络
-    type: select
+  - type: select
+    name: 🏠 私有网络
     proxies:
       - 🚀 节点选择
       - DIRECT
       - REJECT
       - ⚡ 自动选择
 
-  - name: 🔒 国内服务
-    type: select
+  - type: select
+    name: 🔒 国内服务
     proxies:
       - 🚀 节点选择
       - DIRECT
       - REJECT
       - ⚡ 自动选择
 
-  - name: 🌐 非中国
-    type: select
+  - type: select
+    name: 🌐 非中国
     proxies:
       - 🚀 节点选择
       - DIRECT
       - REJECT
       - ⚡ 自动选择
 
-  - name: 🐟 漏网之鱼
-    type: select
+  - type: select
+    name: 🐟 漏网之鱼
     proxies:
       - 🚀 节点选择
       - DIRECT
